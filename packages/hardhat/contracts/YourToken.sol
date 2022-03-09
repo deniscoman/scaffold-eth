@@ -5,6 +5,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract YourToken is ERC20{
   constructor(uint256 initialSupply) public ERC20("AgileFreaks", "AF") {
-       _mint(address(0x1A72b429372352B92201bB7Cd42dF4baD68e037b), initialSupply);
+       _mint(msg.sender, initialSupply);
    }
 }
