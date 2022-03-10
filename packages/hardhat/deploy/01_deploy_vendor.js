@@ -16,9 +16,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   const result = await yourToken.transfer( vendor.address, ethers.utils.parseEther("1000") );
 
-  // console.log("\n 🤹  Sending ownership to frontend address...\n")
+  console.log("\n 🤹  Sending ownership to frontend address...\n")
   // ToDo: change address with your burner wallet address vvvv
-  await vendor.transferOwnership( "00x1A72b429372352B92201bB7Cd42dF4baD68e037b" );
+  await vendor.transferOwnership( "0x1A72b429372352B92201bB7Cd42dF4baD68e037b" );
 };
 
 module.exports.tags = ["Vendor"];

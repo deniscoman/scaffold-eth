@@ -16,7 +16,7 @@ contract Vendor is Ownable {
   }
 
   function buyTokens() external payable {
-    uint amountOfTokens = msg.value / tokensPerEth;
+    uint amountOfTokens = msg.value * tokensPerEth;
     yourToken.transfer(msg.sender, amountOfTokens);
     BuyTokens(msg.sender, msg.value, amountOfTokens);
   }
@@ -24,10 +24,13 @@ contract Vendor is Ownable {
   function withdraw() external onlyOwner {
     payable(msg.sender).transfer(address(this).balance);
   }
-  //ToDo: create a payable buyTokens() function:
+
+  function sellTokens(uint256 amount) external {
+    bool transfered = yourToken.transfer(address(this), amount);
+    require(transfered, "Failed to transfer");
+    (bool sent,) = payable(msg.sender).call{value: amount/tokensPerEth}("");
+    require(sent, "Failed to send Ether");
+  }
 
   //ToDo: create a sellTokens() function:
-
-  //ToDo: create a withdraw() function that lets the owner, you can
-  //use the Ownable.sol import above:
 }

@@ -12,7 +12,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   await deploy("YourToken", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: [ ethers.utils.parseEther("2000") ],
     log: true,
   });
 
