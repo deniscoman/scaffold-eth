@@ -26,11 +26,9 @@ contract Vendor is Ownable {
   }
 
   function sellTokens(uint256 amount) external {
-    bool transfered = yourToken.transfer(address(this), amount);
+    bool transfered = yourToken.transferFrom(msg.sender, address(this), amount);
     require(transfered, "Failed to transfer");
     (bool sent,) = payable(msg.sender).call{value: amount/tokensPerEth}("");
     require(sent, "Failed to send Ether");
   }
-
-  //ToDo: create a sellTokens() function:
 }
